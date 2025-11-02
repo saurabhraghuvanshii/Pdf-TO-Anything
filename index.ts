@@ -27,6 +27,7 @@ async function testPdfParse(pdfPath: string): Promise<string> {
 
         // Basic markdown formatting
         let markdown = result.text
+            .replace(/-- \d+ of \d+ --/g, '') // Remove page number markers (e.g., "-- 1 of 9 --")
             .replace(/\n{3,}/g, '\n\n') // Clean up excessive newlines
             .replace(/([.!?])\s+/g, '$1\n\n') // Paragraph breaks after sentences
             .trim();
@@ -96,7 +97,7 @@ print(markdown)
         );
 
         // Cleanup temp file
-        await fs.unlink(scriptPath).catch(() => {});
+        await fs.unlink(scriptPath).catch(() => { });
 
         const duration = Date.now() - startTime;
         console.log(`✓ Completed in ${duration}ms`);
@@ -106,7 +107,7 @@ print(markdown)
     } catch (error) {
         console.error('❌ Docling failed:', error);
         // Cleanup temp file on error
-        await fs.unlink('./temp_docling.py').catch(() => {});
+        await fs.unlink('./temp_docling.py').catch(() => { });
         throw error;
     }
 }
@@ -149,7 +150,7 @@ print(result.text_content)
         );
 
         // Cleanup temp file
-        await fs.unlink(scriptPath).catch(() => {});
+        await fs.unlink(scriptPath).catch(() => { });
 
         const duration = Date.now() - startTime;
         console.log(`✓ Completed in ${duration}ms`);
@@ -159,7 +160,7 @@ print(result.text_content)
     } catch (error) {
         console.error('❌ MarkItDown failed:', error);
         // Cleanup temp file on error
-        await fs.unlink('./temp_markitdown.py').catch(() => {});
+        await fs.unlink('./temp_markitdown.py').catch(() => { });
         throw error;
     }
 }
@@ -232,19 +233,6 @@ async function compareQuality(pdfPath: string) {
         }
     }
 
-    // Summary
-    console.log('\n=== Quality Comparison Summary ===');
-    console.log('┌─────────────┬───────┬───────────┬────────┬────────────┐');
-    console.log('│ Tool        │ Speed │ Structure │ Tables │ Images     │');
-    console.log('├─────────────┼───────┼───────────┼────────┼────────────┤');
-    console.log('│ pdf-parse   │ ⚡⚡⚡  │ ❌        │ ❌     │ ❌         │');
-    console.log('│ Docling     │ ⚡⚡   │ ✅ ⭐⭐⭐  │ ✅ ⭐⭐ │ ✅ ⭐⭐⭐   │');
-    console.log('│ MarkItDown  │ ⚡⚡   │ ✅ ⭐⭐   │ ✅ ⭐  │ ✅ ⭐⭐     │');
-    console.log('└─────────────┴───────┴───────────┴────────┴────────────┘');
-    console.log('\n💡 Recommendation for RAG:');
-    console.log('   → Docling: Best overall quality for structured documents');
-    console.log('   → MarkItDown: Good alternative with Microsoft support');
-    console.log('   → pdf-parse: Only for simple text extraction');
 }
 
 // Main execution
@@ -261,8 +249,6 @@ async function main() {
     }
 
     await compareQuality(pdfPath);
-    
-    console.log('\n✅ All tests completed! Check output_*.md files for results.\n');
 }
 
 main().catch(console.error);

@@ -66,8 +66,6 @@ The reason for these requirements is that the visual presentation of the ele-
 ments conveys meaning that must be preserved when the page is rendered, for in-
 stance by an assistive technology in an audio modality instead of a visual one.
 
--- 1 of 9 --
-
 But there are other types of content that WCAG 1.0 does not address where the
 visual presentation conveys meaning.
 
@@ -145,8 +143,6 @@ also contains provisions for providing the necessary information to assistive te
 nologies to present content in a variety of modalities.
 
 Even though a complex site
-
--- 2 of 9 --
 
 might be coded to be interoperable with assistive technologies, it could still be diffi-
 cult for users with disabilities to use unless their needs were considered in the initial
@@ -227,8 +223,6 @@ Color (SC 1.4.1)
 While WCAG 1.0 allows information to be conveyed through color as long as the
 color is available through markup, WCAG 2.0 requires that color not be the only vis-
 
--- 3 of 9 --
-
 ual means of conveying information.
 
 Strategies for meeting this requirement include
@@ -295,8 +289,6 @@ WCAG 2.0 contains a new requirement to address this issue.
 Design your web
 page to take advantage of built-in support in browsers, when possible, or provide a
 custom focus highlight as part of your web design.
-
--- 4 of 9 --
 
 Triggering seizures (SC 2.3.1)
 Certain types of moving content can trigger seizures in people with photosensitive
@@ -380,8 +372,6 @@ They need navigation mechanisms presented in
 a consistent manner and they need help avoiding or correcting errors.
 
 We shall review some of the WCAG 2.0 requirements in these areas.
-
--- 5 of 9 --
 
 Keyboard operation (SC 2.1.1 and SC 2.1.2)
 All of the functionality of the site or application must be operable using only the
@@ -475,8 +465,6 @@ switch.
 
 They use software that scans through each key on an onscreen keyboard until
 
--- 6 of 9 --
-
 the user activates the button or switch to select the desired character or function key.
 
 And some users with reading disabilities need a lot more time to read and understand
@@ -549,8 +537,6 @@ this important scenario: 1) the transaction must be reversible, 2) the informati
 tered by the user must be checked for errors and the user must be provided an oppor-
 tunity to correct the errors, or 3) the user must be given an opportunity to review the
 information entered and change it before committing the transaction.
-
--- 7 of 9 --
 
 Accessibility Support for Uses of a Web Technology
 In addition to meeting the individual provisions that impact the design, designers
@@ -639,8 +625,6 @@ Does the num-
 ber really matter as long as they’re acces-
 sibility supported?
 
--- 8 of 9 --
-
 quired contrast ratio on sites where colors that are required for certain visual designs
 do not meet the contrast ratio.
 
@@ -706,5 +690,3 @@ ANSI/HFES 100-2007, Human Factors Engineering of Computer Workstations (2007)
 
 ISO 9241-304:2008, Ergonomics of human-system interaction -- Part 304: User perform-
 ance test methods for electronic visual displays (2008)
-
--- 9 of 9 --
