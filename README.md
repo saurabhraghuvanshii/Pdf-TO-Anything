@@ -24,7 +24,7 @@ pip install --no-deps opencv-python-headless || pip install opencv-python-headle
 ## Usage
 
 
-###install globally:
+### install globally:
 
 ```bash
 npm link
