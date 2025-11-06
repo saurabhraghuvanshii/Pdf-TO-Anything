@@ -1,20 +1,25 @@
 {
-  "name": "pdf-to-markdown",
-  "version": "1.0.0",
-  "description": "",
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "pdf-parse": "^2.4.5",
-    "typescript": "^5.9.3"
-  },
-  "devDependencies": {
-    "@types/pdf-parse": "^1.1.5",
-    "tsx": "^4.20.6"
-  }
+	"name": "pdf-to-markdown",
+	"version": "1.0.0",
+	"description": "CLI tool to convert documents (PDF, images, etc.) to Markdown, HTML, JSON, Text, and Doctags using Docling",
+	"license": "ISC",
+	"author": "",
+	"type": "module",
+	"main": "packages/index.ts",
+	"bin": {
+		"pdfconvert": "./bin/convert.bin"
+	},
+	"scripts": {
+		"setup": "npm install && pip install docling && (pip install --no-deps opencv-python-headless || pip install opencv-python-headless)",
+		"install:all": "npm install && pip install docling && (pip install --no-deps opencv-python-headless || pip install opencv-python-headless)",
+		"build": "tsc packages/index.ts --outDir dist --target ES2020 --module commonjs --esModuleInterop",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"typescript": "^5.9.3"
+	},
+	"devDependencies": {
+		"@types/node": "^20.0.0",
+		"tsx": "^4.20.6"
+	}
 }
