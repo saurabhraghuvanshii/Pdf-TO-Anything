@@ -13,7 +13,7 @@ async function testDoclingToHtml(pdfPath: string): Promise<string> {
         try {
             await execAsync('python -c "import docling"');
         } catch {
-            console.error('❌ Docling not installed. Install with: pip install docling');
+            console.error('Docling not installed. Install with: pip install docling');
             throw new Error('Docling not installed');
         }
 
@@ -63,7 +63,7 @@ print(html)
 
         return stdout.trim();
     } catch (error) {
-        console.error('❌ Docling failed:', error);
+        console.error('Docling failed:', error);
         await fs.unlink('./temp_docling_html.py').catch(() => { });
         throw error;
     }
@@ -78,7 +78,7 @@ async function testMarkItDownToHtml(pdfPath: string): Promise<string> {
         try {
             await execAsync('python -c "import markitdown"');
         } catch {
-            console.error('❌ MarkItDown not installed. Install with: pip install markitdown');
+            console.error('MarkItDown not installed. Install with: pip install markitdown');
             throw new Error('MarkItDown not installed');
         }
 
@@ -137,7 +137,7 @@ except ImportError:
 
         return stdout.trim();
     } catch (error) {
-        console.error('❌ MarkItDown failed:', error);
+        console.error('MarkItDown failed:', error);
         await fs.unlink('./temp_markitdown_html.py').catch(() => { });
         throw error;
     }
@@ -258,14 +258,14 @@ async function main() {
     try {
         await fs.access(pdfPath);
     } catch {
-        console.error(`\n❌ Error: PDF file not found at ${pdfPath}`);
+        console.error(`\nError: PDF file not found at ${pdfPath}`);
         console.log('Usage: npx tsx html.ts <path-to-pdf>\n');
         process.exit(1);
     }
 
     await compareQualityHtml(pdfPath);
 
-    console.log('\n✅ All HTML conversions completed! Check output_*.html files for results.\n');
+    console.log('\n All HTML conversions completed! Check output_*.html files for results.\n');
 }
 
 main().catch(console.error);

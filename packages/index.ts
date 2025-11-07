@@ -1,8 +1,6 @@
 import * as fs from 'fs/promises';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import * as path from 'path';
-
 const execAsync = promisify(exec);
 
 const OUTPUT_FORMATS = ['html', 'markdown', 'md', 'json', 'text', 'doctags'];
@@ -19,7 +17,7 @@ async function convertDocument(
             await execAsync('python -c "import docling"');
         } catch {
             if (!quiet) {
-                console.error('❌ Docling not installed. Install with: pip install docling opencv-python-headless');
+                console.error('Docling not installed. Install with: pip install docling opencv-python-headless');
             }
             throw new Error('Docling not installed');
         }
@@ -28,7 +26,7 @@ async function convertDocument(
             await execAsync('python -c "import cv2"');
         } catch {
             if (!quiet) {
-                console.error('❌ OpenCV (cv2) not installed. Install with: pip install opencv-python-headless');
+                console.error(' OpenCV (cv2) not installed. Install with: pip install opencv-python-headless');
                 console.error('   Or run: npm run setup');
             }
             throw new Error('OpenCV (cv2) not installed');
@@ -173,7 +171,7 @@ async function main() {
     const { inputPath, outputFormat, quiet } = parseArgs();
 
     if (!inputPath) {
-        console.error('❌ Error: No input file specified');
+        console.error(' Error: No input file specified');
         console.error('Usage: pdfconvert <input-file> [--format <output-format>]');
         console.error('Use --help for more information');
         process.exit(1);
@@ -182,13 +180,13 @@ async function main() {
     try {
         await fs.access(inputPath);
     } catch {
-        console.error(`❌ Error: File not found: ${inputPath}`);
+        console.error(` Error: File not found: ${inputPath}`);
         process.exit(1);
     }
 
     const normalizedFormat = outputFormat.toLowerCase();
     if (!OUTPUT_FORMATS.includes(normalizedFormat) && !OUTPUT_FORMATS.includes(normalizedFormat.replace('md', 'markdown'))) {
-        console.error(`❌ Error: Unsupported output format: ${outputFormat}`);
+        console.error(` Error: Unsupported output format: ${outputFormat}`);
         console.error(`Supported formats: ${OUTPUT_FORMATS.join(', ')}`);
         process.exit(1);
     }
@@ -197,12 +195,12 @@ async function main() {
         const output = await convertDocument(inputPath, outputFormat, quiet);
         process.stdout.write(output);
     } catch (error: any) {
-        console.error(`❌ Conversion failed: ${error.message}`);
+        console.error(` Conversion failed: ${error.message}`);
         process.exit(1);
     }
 }
 
 main().catch((error) => {
-    console.error('❌ Unexpected error:', error);
+    console.error(' Unexpected error:', error);
     process.exit(1);
 });
