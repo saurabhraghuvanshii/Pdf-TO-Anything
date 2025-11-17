@@ -7,7 +7,8 @@
 	"type": "module",
 	"main": "packages/index.ts",
 	"bin": {
-		"pdfconvert": "./bin/convert.bin"
+		"pdfconvert": "./bin/convert",
+		"youtube": "./bin/youtube"
 	},
 	"scripts": {
 		"setup": "npm install && pip install docling && (pip install --no-deps opencv-python-headless || pip install opencv-python-headless)",
@@ -16,7 +17,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"yt-dlp-exec": "^1.0.2"
 	},
 	"devDependencies": {
 		"@types/node": "^20.0.0",

@@ -1,6 +1,8 @@
 import * as fs from 'fs/promises';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { handleYouTubeCLI } from './video-audio';
+
 const execAsync = promisify(exec);
 
 const OUTPUT_FORMATS = ['html', 'markdown', 'md', 'json', 'text', 'doctags'];
@@ -168,6 +170,13 @@ Examples:
 }
 
 async function main() {
+    const args = process.argv.slice(2);
+
+    if (args[0] === "youtube") {
+        await handleYouTubeCLI(args.slice(1));
+        process.exit(0);
+    }
+
     const { inputPath, outputFormat, quiet } = parseArgs();
 
     if (!inputPath) {

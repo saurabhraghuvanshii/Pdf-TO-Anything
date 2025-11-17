@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+import { spawn } from 'child_process';
+import { join, dirname } from 'path';
+import { existsSync } from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const scriptPath = join(__dirname, '../packages/index.ts');
+const tsxPath = join(__dirname, '../node_modules/.bin/tsx');
+
+const command = existsSync(tsxPath) ? tsxPath : 'npx';
+const args = existsSync(tsxPath)
+    ? [scriptPath, 'youtube', ...process.argv.slice(2)]
+    : ['tsx', scriptPath, 'youtube', ...process.argv.slice(2)];
+
+const proc = spawn(command, args, { stdio: 'inherit' });
+proc.on('exit', (code) => process.exit(code || 0));
+
